@@ -4,8 +4,9 @@ const router = express.Router();
 // const restaurantData = require('../services/restaurantSample.json');
 
 router.get('/', async (req, res) => {
+    const id = req.query['restId'];
     try {
-        const result = await Restaurant.find();
+        const result = await Restaurant.findById(id);
         res.json(result);
     } catch(err) {
         res.json({
