@@ -3,11 +3,36 @@ const {User} = require('../models/User');
 const express = require('express');
 const router = express.Router();
 
+router.post('/stage', async (req, res) => {
+    const roomId = req.query['roomId'];
+    try {
+        const room = await Room.findById(roomId);
+        if(room){
+            const newRoom = await Room.findByIdAndUpdate(roomId, {stage: room.stage + 1});
+            res.json({
+                roomId: newRoom._id,
+                stage: newRoom.stage
+            });
+        }
+    } catch(err) {
+        res.json({
+            message: "Could not increment stage."
+        });
+    }
+})
+
 router.get('/stage', async (req, res) => {
     const roomId = req.query['roomId'];
-    if(true) {
+    try {
         const room = await Room.findById(roomId);
-        console.log(room);
+        res.json({
+            room: room.id,
+            stage: room.stage
+        });
+    } catch(err) {
+        res.json({
+            message: "No room found with id " + roomId
+        });
     }
 })
 
@@ -15,6 +40,7 @@ router.get('/', async (req, res) => {
     const roomId = req.query['roomId'];
     try {
         const room = await Room.findById(roomId);
+        if(!room) throw "Room not found";
         res.json(room);
     } catch(err) {
         res.json({

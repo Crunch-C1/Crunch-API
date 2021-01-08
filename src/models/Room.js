@@ -8,6 +8,7 @@ const roomSchema = mongoose.Schema({
     stage: { type: Number, default: 1 },
     host_id: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     tabs: { type: [Schema.Types.ObjectId], ref: 'Tab' },
+    winning_restaurant: {type: Schema.Types.ObjectId, ref: 'Restaurant'},
     ballots: [new Schema({
         user: { type: Schema.Types.ObjectId, ref: 'User' },
         orderedRestaurants: { type: [Schema.Types.ObjectId], ref: 'Restaurant' },

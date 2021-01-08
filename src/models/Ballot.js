@@ -1,9 +1,8 @@
-// export {};
 const {mongoose} = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-export const tabSchema = mongoose.Schema({
+const tabSchema = mongoose.Schema({
     userId: {type: Schema.Types.ObjectId, ref: 'User',required: true},
     items: [new Schema({
         name: {type: String, required: true},

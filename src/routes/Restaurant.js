@@ -1,7 +1,7 @@
 const { Restaurant } = require('../models/Restaurant');
 const express = require('express');
 const router = express.Router();
-// import * as restaurantData from '../services/restaurantSample.json';
+// const restaurantData = require('../services/restaurantSample.json');
 
 router.get('/', async (req, res) => {
     try {
@@ -27,29 +27,29 @@ router.get('/', async (req, res) => {
 //     items: SchemaMenuItem[];
 // }
 
-// router.post('/', async (req: any, rest: any) => {
-//     const pages = (<any>restaurantData).pages;
+// router.post('/', async (req, rest) => {
+//     const pages = restaurantData.pages;
 //     let i = 0;
 //     for (const page of pages) {
-//         const restaurants = (<any>page).data;
-
+//         const restaurants = page.data;
 //         for(const restaurant of restaurants) {
-//             const schemaMenus: any[] = [];
-//             const rest = (<any>restaurant);
+//             const schemaMenus = [];
+            
+//             const rest = restaurant;
 //             for(const menu of rest.menus) {
-//                 const currMenu = (<any>menu);
-//                 const schemaMenu: {title: string, subsections: SchemaMenuSection[]} = {
+//                 const currMenu = menu;
+//                 const schemaMenu = {
 //                     title: currMenu.menu_name,
 //                     subsections: []
 //                 };
 //                 for (const section of currMenu.menu_sections) {
-//                     const currSection = (<any>section);
-//                     const schemaSection: {title: string, items: SchemaMenuItem[]} = {
+//                     const currSection = section;
+//                     const schemaSection = {
 //                         title: currSection.section_name,
 //                         items: [],
 //                     };
 //                     for (const item of currSection.menu_items) {
-//                         const menuItem = (<any>item);
+//                         const menuItem = item;
 //                         const schemaMenuItem = {
 //                             name: menuItem.name,
 //                             price: menuItem.price
@@ -60,12 +60,17 @@ router.get('/', async (req, res) => {
 //                 }
 //                 schemaMenus.push(schemaMenu);
 //             }
+//             let cuisines = [];
+//             for (let cuisine of restaurant.cuisines) {
+//                 cuisines.push(cuisine);
+//             }
 //             try {
 //                 const r = {
 //                     name: rest.restaurant_name,
 //                     phone: rest.restaurant_phone,
-//                     website: (<string>rest.restaurant_website).trim() ? rest.restaurant_website : "N/A",
-//                     address: (<any>rest.address).formatted,
+//                     cuisines: cuisines,
+//                     website: (rest.restaurant_website).trim() ? rest.restaurant_website : "N/A",
+//                     address: (rest.address).formatted,
 //                     menus: schemaMenus
 //                 };
 //                 await Restaurant(r).save();
