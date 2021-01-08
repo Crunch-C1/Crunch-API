@@ -1,9 +1,8 @@
 const { User } = require('../models/User');
 const express = require('express');
-const { route } = require('./Vote');
 const router = express.Router();
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     let {name, phoneNumber} = req.body;
     let user = new User({ name, phoneNumber });
     try {
@@ -19,3 +18,5 @@ router.post('/', (req, res) => {
         })
     }
 });
+
+module.exports = router;
