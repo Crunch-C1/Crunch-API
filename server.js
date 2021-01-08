@@ -15,10 +15,12 @@ const port = process.env.PORT || 5000;
 const clientURL = process.env.CLIENT_URL || 'http://localhost:5000';
 
 /* --- MIDDLEWARE --- */
-server.use(cors({
-    origin: clientURL,
-    credentials: true
-}));
+// server.use(cors({
+//     origin: clientURL,
+//     credentials: true
+// }));
+
+server.use(cors());
 
 server.use(express.urlencoded({ extended: true }));
 server.use(express.json());
